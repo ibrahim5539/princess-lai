@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Little Early — For Princess Lai 👑</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#07060d;color:#fff;font-family:Georgia,serif;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-2;background:
+radial-gradient(circle at 50% 20%,rgba(217,112,164,.20),transparent 30%),
+radial-gradient(circle at 10% 85%,rgba(94,76,170,.18),transparent 30%),
+linear-gradient(145deg,#07060d,#130b19 55%,#07060d)}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;opacity:.65;animation:tw 3s infinite}
+@keyframes tw{50%{opacity:.08;transform:scale(.4)}}
+main{min-height:100svh}.screen{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:70px 18px}
+.wrap{width:min(850px,100%);text-align:center}.k{font-size:10px;letter-spacing:5px;color:#bdb2c0;text-transform:uppercase}
+h1{font-size:clamp(43px,12vw,92px);font-weight:400;line-height:.98;margin:18px 0}
+h2{font-size:clamp(31px,8vw,57px);font-weight:400;margin:14px 0}
+p{font-size:18px;line-height:1.85;color:#eee7ef}.muted{color:#aaa0ae;font-size:13px}
+.gold{color:#f5d18b}.pink{color:#f1a7c6}.glow{text-shadow:0 0 30px rgba(241,167,198,.3)}
+.crown{font-size:68px;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-9px)}}
+.btn{border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.07);color:#fff;border-radius:999px;padding:14px 23px;margin:7px;cursor:pointer;backdrop-filter:blur(10px);transition:.25s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.13)}
+.card{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);border-radius:28px;padding:28px;backdrop-filter:blur(14px)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0}
+.t{border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:17px 5px;background:rgba(255,255,255,.045)}
+.t b{display:block;font-size:clamp(27px,7vw,43px);color:#f5d18b}.t span{font-size:9px;letter-spacing:2px;color:#aaa0ae}
+.reason{font-size:21px;line-height:1.7;min-height:125px;display:flex;align-items:center;justify-content:center}
+.reveal{animation:up .9s both}@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hidden{display:none!important}
+#toast{position:fixed;z-index:50;bottom:22px;left:50%;transform:translate(-50%,30px);opacity:0;background:#17101e;border:1px solid #33273a;border-radius:999px;padding:12px 18px;transition:.3s;pointer-events:none}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.heart{position:fixed;bottom:-30px;z-index:10;pointer-events:none;animation:rise 5s linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:520px){.count{gap:7px}.t{padding:13px 2px}.t b{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="stars" id="stars"></div><div id="toast"></div>
+
+<section class="screen">
+<div class="wrap reveal">
+<div class="k">A message before the big day</div>
+<div class="crown">👑</div>
+<h1 class="glow">Princess Lai</h1>
+<p>I know your birthday isn't here yet…<br>but I couldn't wait until then to tell you something. 💗</p>
+<button class="btn" onclick="reveal()">I want to know 👀</button>
+<p class="muted">This is only the beginning…</p>
+</div>
+</section>
+
+<section id="revealBox" class="screen hidden">
+<div class="wrap reveal">
+<div class="k">Okay… you found it</div>
+<h2>I'm wishing you early. ✨</h2>
+<div class="card">
+<p>Not because I forgot the date.</p>
+<p>Not because I want to skip your special day.</p>
+<p class="pink">Just because some people are worth celebrating a little earlier. ❤️</p>
+<p>So here's your tiny advance wish… while the real birthday surprise waits for <b class="gold">11 November</b>.</p>
+</div>
+<button class="btn" onclick="go('count')">See how long is left ⏳</button>
+</div>
+</section>
+
+<section id="count" class="screen">
+<div class="wrap">
+<div class="k">COUNTING DOWN TO HER DAY</div>
+<h2>11 November 🎂</h2>
+<p>There's still time… but every second is getting closer.</p>
+<div class="count">
+<div class="t"><b id="d">0</b><span>DAYS</span></div>
+<div class="t"><b id="h">0</b><span>HOURS</span></div>
+<div class="t"><b id="m">0</b><span>MINUTES</span></div>
+<div class="t"><b id="s">0</b><span>SECONDS</span></div>
+</div>
+<p class="gold">The official birthday wish is being saved for 11 November. 👑</p>
+<button class="btn" onclick="go('why')">One more thing →</button>
+</div>
+</section>
+
+<section id="why" class="screen">
+<div class="wrap">
+<div class="k">WHY I'M WISHING EARLY</div>
+<h2>A few reasons…</h2>
+<div class="card reason" id="reason">Because waiting to celebrate someone special can be harder than it sounds. 💗</div>
+<button class="btn" onclick="next()">Another reason ✨</button>
+</div>
+</section>
+
+<section id="final" class="screen">
+<div class="wrap">
+<div class="k">JUST AN ADVANCE WISH</div>
+<h2>For now… just this. 👑</h2>
+<div class="card">
+<p>May the days leading to your birthday be full of little reasons to smile.</p>
+<p>And when <span class="gold">11 November</span> finally arrives, I hope you feel just how loved, appreciated and special you are.</p>
+<p class="pink">Happy Birthday in advance, Princess Lai. ❤️</p>
+<p class="muted">But remember… this is NOT the real birthday surprise.</p>
+</div>
+<button class="btn" onclick="hearts()">Send some love 💗</button>
+<button class="btn" onclick="go('count')">Check the countdown again ⏳</button>
+</div>
+</section>
+
+<script>
+for(let i=0;i<110;i++){let x=document.createElement('i');x.className='star';x.style.left=Math.random()*100+'%';x.style.top=Math.random()*100+'%';x.style.animationDelay=Math.random()*3+'s';document.getElementById('stars').appendChild(x)}
+function reveal(){document.getElementById('revealBox').classList.remove('hidden');setTimeout(()=>go('revealBox'),50);toast('A little early surprise 💌')}
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+const reasons=[
+'Because some people deserve more than one day of being celebrated. 👑',
+'Because I wanted you to know that your special day is already on my mind. 💗',
+'Because the countdown feels nicer when there is a little surprise along the way.',
+'Because 11 November is still coming… and I already have a reason to smile. ✨',
+'Because you are worth the extra wish, even before the actual birthday.'
+];let r=0;
+function next(){r=(r+1)%reasons.length;document.getElementById('reason').textContent=reasons[r]}
+const target=new Date('2026-11-11T00:00:00+05:00').getTime();
+function tick(){let n=Math.max(0,target-Date.now()),x=Math.floor(n/1000);document.getElementById('d').textContent=Math.floor(x/86400);document.getElementById('h').textContent=Math.floor(x%86400/3600);document.getElementById('m').textContent=Math.floor(x%3600/60);document.getElementById('s').textContent=x%60}
+tick();setInterval(tick,1000);
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2300)}
+function hearts(){for(let i=0;i<28;i++){let x=document.createElement('span');x.className='heart';x.textContent=['💗','❤️','✨','👑'][Math.floor(Math.random()*4)];x.style.left=Math.random()*100+'%';x.style.animationDuration=3+Math.random()*3+'s';document.body.appendChild(x);setTimeout(()=>x.remove(),6500)}toast('A little love sent 💗')}
+</script>
+</body>
+</html>
